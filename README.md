@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Moonshot Calendar
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The app allows to see list of launches within selected date range and find a pad on the map.
 
 ## Available Scripts
 
@@ -11,36 +11,27 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
 ### `yarn test`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+## Architecture
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+-   component - is a presentation
+-   container - is a glue between a component and data
+-   store - is a shared application data storage
+-   http-client - is a client that abstract a use of the XMLHttpRequest
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Implementation details
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+RemoteData - helps track data context. There are four options:
 
-### `yarn eject`
+-   initial - the data wasn't requested
+-   pending - the data was requested
+-   success - the data was loaded
+-   failure - the data was loaded with an error
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Either - helps present data in different states. The states are Left and Right, for example valid data and invalid data.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+During development, I focused on working with data, because it is more important to give the user the opportunity to use the application even if it does not look good enough for a while. And also tried to make the application susceptible to expansion. For example, now you can quickly add missing data to the UI, such as pads details, description, and agencies.
