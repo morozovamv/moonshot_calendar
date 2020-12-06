@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { memo } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { useSink } from './utils/use-sink.utils';
+import { Bootstrap } from './ui/bootstrap/bootstrap.component';
+
+const env = {};
+
+const Index = memo(() => {
+	const BootstrapC = useSink(() => Bootstrap(env), [Bootstrap]);
+
+	return <BootstrapC />;
+});
 
 ReactDOM.render(
 	<React.StrictMode>
-		<App />
+		<Index />
 	</React.StrictMode>,
 	document.getElementById('root'),
 );
